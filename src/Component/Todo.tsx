@@ -16,7 +16,7 @@ const Todo = ({ todoList, toggleComplete, deleteTodo, editTodo }: Props) => {
 
   useEffect(() => {
     localStorage.setItem("finalList", JSON.stringify(storeList));
-  }, [storeList]);
+  }, [storeList, todoList, deleteTodo]);
   return (
     <div className="Todo">
       <p

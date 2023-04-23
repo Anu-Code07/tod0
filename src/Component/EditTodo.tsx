@@ -5,7 +5,7 @@ import { todoVal } from "../states/todoForm";
 export const EditTodo = ({ editTodo, task }: any) => {
   const [todos, setTodos] = useRecoilState(todoVal);
   const [val, setVal] = useState(task?.task);
-  console.log("-->", task);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVal(e.target.value);
