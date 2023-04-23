@@ -2,6 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { ToDoListTypes } from "../type";
+import { useEffect, useState } from "react";
+import { todoVal } from "../states/todoForm";
+import { useRecoilValue } from "recoil";
 type Props = {
   todoList: ToDoListTypes.TodoList;
   toggleComplete: Function;
@@ -9,8 +12,11 @@ type Props = {
   editTodo: Function;
 };
 const Todo = ({ todoList, toggleComplete, deleteTodo, editTodo }: Props) => {
-  console.log(todoList);
+  const storeList = useRecoilValue(todoVal);
 
+  useEffect(() => {
+    localStorage.setItem("finalList", JSON.stringify(storeList));
+  }, [storeList]);
   return (
     <div className="Todo">
       <p

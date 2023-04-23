@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TodoForm } from "./TodoForm";
 import Todo from "./Todo";
 import { todoVal } from "../states/todoForm";
@@ -8,7 +8,13 @@ import { EditTodo } from "./EditTodo";
 const TodoWrapper = () => {
   const listTodo = useRecoilValue(todoVal);
   const [todosList, setTodosList] = useRecoilState(todoVal);
-
+  useEffect(() => {
+    if (localStorage.getItem("finalList")) {
+      let storeData: any = localStorage.getItem("finalList");
+      storeData = JSON.parse(storeData);
+      setTodosList(storeData);
+    }
+  }, []);
   const toggleComplete = (id: number) => {
     setTodosList(
       todosList.map((todo) =>
@@ -49,6 +55,8 @@ const TodoWrapper = () => {
       )
     );
   };
+  console.log("==>", listTodo);
+
   return (
     <div className="TodoWrapper">
       <h1>Get Things Done!</h1>
